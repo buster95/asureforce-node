@@ -1,11 +1,10 @@
 import axios, { AxiosInstance } from "axios";
 import { AsureForceConnectConfig } from "./types/AsureForceConfig";
-import { AsureForceEmployee } from "./types/AsureForceEmployee";
 
-class AsureForceConnect {
+class ConnectBase {
   http: AxiosInstance;
 
-  constructor(private readonly config: AsureForceConnectConfig) {
+  constructor(public readonly config: AsureForceConnectConfig) {
     this.http = axios.create({
       baseURL: this.config.baseURL,
       auth: {
@@ -14,13 +13,6 @@ class AsureForceConnect {
       },
     });
   }
-
-  async getEmployee(employeeKey: string) {
-    const { data } = await this.http.get<AsureForceEmployee>(
-      `/webapi/2/employees/${employeeKey}?$select=Id,Key,EmployeeNumber`
-    );
-    return data;
-  }
 }
 
-export { AsureForceConnect };
+export { ConnectBase };

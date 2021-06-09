@@ -6,7 +6,8 @@
   "typings": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "publish": "npm run build && npm publish"
+    "prebuild": "npm version patch && git push --all origin && git push --tags origin",
+    "publish": "npm run prebuild && npm run build && npm publish"
   },
   "author": {
     "name": "Walter Corrales",
@@ -18,6 +19,7 @@
   },
   "devDependencies": {
     "@types/node": "^15.12.2",
+    "dotenv": "^10.0.0",
     "jest": "^27.0.4",
     "ts-jest": "^27.0.3",
     "typescript": "^4.3.2"
