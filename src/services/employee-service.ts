@@ -1,12 +1,16 @@
 import { AsureForceEmployee } from "..";
-import { AFEmployeeQueryString } from "../types/AsureForceEmployee";
+import {
+  AFEmployeeLevelQueryString,
+  AFEmployeeQueryString,
+  AsureForceEmployeeLevel
+} from "../types/AsureForceEmployee";
 import { IConnectBase, GConstructor } from "../types/mixin";
 
 export const EmployeeService = <TBase extends GConstructor<IConnectBase>>(
   Base: TBase
 ) => {
   return class extends Base {
-    processQueries(queries?: AFEmployeeQueryString) {
+    processEmployeeQueries(queries?: AFEmployeeQueryString) {
       let querySight = '';
       let querySelect: string = '';
       let queryExpand: string = '';
@@ -21,26 +25,35 @@ export const EmployeeService = <TBase extends GConstructor<IConnectBase>>(
 
       if (querySelect !== '' || queryExpand !== '') querySight = '?';
       const concatQueries = `${querySight}${querySelect}${queryExpand}${querySkip}${queryTop}`;
-      console.log(concatQueries);
+      if (this.debugEnabled) console.log(concatQueries);
+      return concatQueries;
+    }
+
+    processEmployeeLevelsQueries(queries?: AFEmployeeLevelQueryString) {
+      let querySight = '';
+      let querySelect: string = '';
+      if (queries?.$select !== undefined && queries.$select.length > 0) { querySelect = `$select=${queries.$select.join(',')}`; }
+      if (querySelect !== '') querySight = '?';
+      const concatQueries = `${querySight}${querySelect}`;
+      if (this.debugEnabled) console.log(concatQueries);
       return concatQueries;
     }
 
     async getEmployees(queries?: AFEmployeeQueryString) {
-      const concatQueries = this.processQueries(queries);
+      const concatQueries = this.processEmployeeQueries(queries);
       const { data } = await this.http.get<AsureForceEmployee[]>(`/webapi/2/employees${concatQueries}`);
       return data;
     }
 
     async getEmployee(employeeKey: string, queries?: AFEmployeeQueryString) {
-      const concatQueries = this.processQueries(queries);
+      const concatQueries = this.processEmployeeQueries(queries);
       const { data } = await this.http.get<AsureForceEmployee>(`/webapi/2/employees/${employeeKey}${concatQueries}`);
       return data;
     }
 
-    async getLevel(employeeId: string) {
-      const { data } = await this.http.get<{ hola: string }>(
-        `/webapi/2/employees/${employeeId}/levels`
-      );
+    async getLevel(employeeId: string, queries?: AFEmployeeLevelQueryString) {
+      const concatQueries = this.processEmployeeLevelsQueries(queries);
+      const { data } = await this.http.get<AsureForceEmployeeLevel>(`/webapi/2/employees/${employeeId}/levels${concatQueries}`);
       return data;
     }
   };

@@ -2,6 +2,7 @@ type AsureForceConnectConfig = {
   baseURL: string;
   user: string;
   pass: string;
+  debugEnabled?: boolean;
 };
 
 // type Sizes = "md" | "lg"

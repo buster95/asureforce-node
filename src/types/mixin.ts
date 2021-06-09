@@ -5,6 +5,7 @@ type GConstructor<T = {}> = new (...args: any[]) => T;
 type IConnectBase = {
   http: AxiosInstance;
   config: AsureForceConnectConfig;
+  debugEnabled: boolean;
 };
 
 export type AnyFunction<A = any> = (...input: any[]) => A
