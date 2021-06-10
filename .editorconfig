@@ -1,8 +1,13 @@
 root = true
 
-[*]
+[src/*.{ts}]
 charset = utf-8
 end_of_line = crlf
 insert_final_newline = true
 indent_style = space
 indent_size = 4
+
+[package.json]
+insert_final_newline = false
+indent_style = space
+indent_size = 2

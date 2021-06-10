@@ -11,6 +11,21 @@
     "update:version": "npm version patch && git push --all origin && git push --tags origin",
     "deploy": "npm run update:version && npm run clean:build && npm publish"
   },
+  "keywords": [
+    "asureforce",
+    "asure",
+    "force",
+    "API",
+    "node"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/buster95/asureforce-node"
+  },
+  "bugs": {
+    "url": "https://github.com/buster95/asureforce-node/issues"
+  },
+  "homepage": "https://github.com/buster95/asureforce-node",
   "author": {
     "name": "Walter Corrales",
     "email": "corraleswalter@live.com"
