@@ -1,4 +1,4 @@
-export type AsureForceEmployee = {
+export type Employee = {
   Id: string;
   Key: string;
   EmployeeNumber: string;
@@ -60,46 +60,3 @@ export type AsureForceEmployee = {
     StatusClass: number;  // 1
   };
 };
-
-export type AsureForceEmployeeLevel = {
-  EmployeeKey: string; //"ca499525-203a-4337-b04c-fad4ba6f95c4",
-  CompanyEnabled: boolean; //true,
-  LocationEnabled: boolean; //false,
-  DivisionEnabled: boolean; //false,
-  DepartmentEnabled: boolean; //true,
-  PositionEnabled: boolean; //false,
-  Company: string; //"Startkleen Legacy LLC",
-  CompanyId: string; //"70063901",
-  CompanyKey: string; //"1c1558c7-6007-4f69-97ee-ac28197bb845",
-  Location: string; //"",
-  LocationId: string; //"",
-  LocationKey: string; //"",
-  Division: string; //"",
-  DivisionId: string; //"",
-  DivisionKey: string; //"",
-  Department: string; //"BMD Buckhead Meat Of Dallas",
-  DepartmentId: string; //"BMD",
-  DepartmentKey: string; //"9401bf9d-ce22-4849-b2e2-9a2b1a26a6c8",
-  Position: string; //"",
-  PositionId: string; //"",
-  PositionKey: string; //""
-}
-
-type FancyProperties<T> = Pick<T, {
-  [K in keyof T]: T[K] extends Record<string, any> ? K : never
-}[keyof T]>;
-
-export type AsureQueryParameters<T> = {
-  $select?: Array<keyof T>;
-  $expand?: Array<keyof FancyProperties<T>>;
-  $top?: number;
-  $skip?: number;
-};
-
-export type AFEmployeeQueryString = AsureQueryParameters<AsureForceEmployee>;
-export type AFEmployeeLevelQueryString = AsureQueryParameters<AsureForceEmployeeLevel>;
-
-// const config: AFEmployeeQueryString = {
-//   $select: ["EmployeeNumber", "EmployeeStatus"],
-//   $expand: ["Company"]
-// };

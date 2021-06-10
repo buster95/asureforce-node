@@ -1,0 +1,22 @@
+export type Timecard = {
+    EmployeeNumber: string;  // "102169",
+    Amount: number;  // 0,
+    BasePayRate: number;  // 0,
+    PayRate: number;  // 0,
+    ReportDate: string;  // "2018-11-14T00:00:00",
+    CompanyID: string;  // "TEMPPLAC",
+    LocationID: string;  // "3000",
+    DivisionID: string;  // "GOOGLE",
+    DepartmentID: string;  // "NA",
+    DepartmentKey: string;  // "10c24220-d0ef-47f2-b9c6-9e7db3f28990",
+    PositionID: string;  // "GOOGLETMP",
+    PositionKey: string;  // "55ccfd44-4aa0-41fb-8399-dac57f0801bb",
+    StartTime: string;  // "2018-11-14T08:00:00",
+    EndTime: string;  // "2018-11-14T16:00:00",
+    PayrollSegmentType: number;  // 1,
+    Minutes: number;  // 480,
+    Comments: string;  // null,
+    SourceType: number;  // 1,
+    PayTypeKey: string;  // "4cc95b4c-ed22-48dd-940c-0eba6bbbd30a",
+    PayTypeId: string;  // "REG"
+};

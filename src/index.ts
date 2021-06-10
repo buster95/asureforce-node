@@ -1,8 +1,17 @@
 import { ConnectBase } from "./connect";
 import { EmployeeService } from "./services/employee-service";
 import { PayrollService } from "./services/payroll-service";
+import { TimecardService } from "./services/timecard-service";
 
 export { AsureForceConnectConfig } from "./types/AsureForceConfig";
-export { AsureForceEmployee, AsureForceEmployeeLevel } from "./types/AsureForceEmployee";
+export { Employee } from "./types/Employee";
+export { EmployeeLevel } from "./types/EmployeeLevel";
+export { EmployeePaygroup } from "./types/EmployeePaygroup";
+export { EmployeeSchedule } from "./types/EmployeeSchedule";
 
-export class AsureForceConnect extends EmployeeService(PayrollService(ConnectBase)) { }
+export class AsureForceConnect extends
+    EmployeeService(
+        TimecardService(
+            PayrollService(ConnectBase)
+        )
+    ) { }
