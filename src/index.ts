@@ -1,4 +1,4 @@
-import { flow } from "fp-ts/function";
+import { flow } from "./flow";
 import { ConnectBase } from "./connect";
 import { EmployeeService } from "./services/employee-service";
 import { PayrollService } from "./services/payroll-service";
