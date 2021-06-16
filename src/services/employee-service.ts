@@ -7,43 +7,14 @@ import { IConnectBase, GConstructor } from "../types/mixin";
 
 export const EmployeeService = <TBase extends GConstructor<IConnectBase>>(Base: TBase) => {
     return class extends Base {
-        processEmployeeQueries(queries?: AFEmployeeQueryString) {
-            let querySight = '';
-            let querySelect: string = '';
-            let queryExpand: string = '';
-            let querySkip: string = '';
-            let queryTop: string = '';
-            if (queries?.$select !== undefined && queries.$select.length > 0) { querySelect = `$select=${queries.$select.join(',')}`; }
-            if (queries?.$expand !== undefined && queries.$expand.length > 0) { queryExpand = `${querySelect !== '' ? '&' : ''}$expand=${queries.$expand.join(',')}`; }
-            if (queries?.$skip !== undefined && queries.$skip >= 0) { querySkip = `${(querySelect !== '' || queryExpand !== '') ? '&' : ''}$skip=${queries.$skip}`; }
-            if (queries?.$top && queries.$top >= 0) {
-                queryTop = `${(querySelect !== '' || queryExpand !== '' || querySkip !== '') ? '&' : ''}$top=${queries.$top}`;
-            }
-
-            if (querySelect !== '' || queryExpand !== '') querySight = '?';
-            const concatQueries = `${querySight}${querySelect}${queryExpand}${querySkip}${queryTop}`;
-            if (this.debugEnabled) console.log(concatQueries);
-            return concatQueries;
-        }
-
-        processEmployeeLevelsQueries(queries?: AFEmployeeLevelQueryString) {
-            let querySight = '';
-            let querySelect: string = '';
-            if (queries?.$select !== undefined && queries.$select.length > 0) { querySelect = `$select=${queries.$select.join(',')}`; }
-            if (querySelect !== '') querySight = '?';
-            const concatQueries = `${querySight}${querySelect}`;
-            if (this.debugEnabled) console.log(concatQueries);
-            return concatQueries;
-        }
-
         async getEmployees(queries?: AFEmployeeQueryString) {
-            const concatQueries = this.processEmployeeQueries(queries);
+            const concatQueries = this.processQueryParameters(queries);
             const { data } = await this.http.get<Employee[]>(`/webapi/2/employees${concatQueries}`);
             return data;
         }
 
         async getEmployee(employeeKey: string, queries?: AFEmployeeQueryString) {
-            const concatQueries = this.processEmployeeQueries(queries);
+            const concatQueries = this.processQueryParameters(queries);
             const { data } = await this.http.get<Employee>(`/webapi/2/employees/${employeeKey}${concatQueries}`);
             return data;
         }
@@ -72,7 +43,7 @@ export const EmployeeService = <TBase extends GConstructor<IConnectBase>>(Base: 
         }
 
         async getLevel(employeeKey: string, queries?: AFEmployeeLevelQueryString) {
-            const concatQueries = this.processEmployeeLevelsQueries(queries);
+            const concatQueries = this.processQueryParameters(queries);
             const { data } = await this.http.get<EmployeeLevel>(`/webapi/2/employees/${employeeKey}/levels${concatQueries}`);
             return data;
         }

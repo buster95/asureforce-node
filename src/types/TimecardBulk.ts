@@ -1,0 +1,91 @@
+export type TimecardBulk = {
+    Key: string; // string; //"f87250ac-c570-40b5-8271-e9eea1cfa694",
+    HourOrigin: number; // 1,
+    EntryType: number; // 2,
+    OverrideType: number; // 0,
+    Hours: number; // 8.0,
+    Amount: number; // 0.0,
+    PayTypeKey: string; // "2f3376a9-c19e-49b5-be24-73d2261982c8",
+    TimeExceptionKey: string; // null,
+    TimeEditReasonKey: string; // null,
+    Comments: string; // "",
+    ReportDate: string; // "2021-05-31T00:00:00",
+    UDFMap: string; // null,
+    UDFValueMap: string; // [],
+    UDFList: string; // null,
+    UDFs: string; // null,
+    CompanyKey: string; // null,
+    LocationKey: string; // null,
+    DivisionKey: string; // null,
+    DepartmentKey: string; // "c05a8b60-7ae3-4315-949b-29b035c0c1c1",
+    PositionKey: string; // "6d1915c9-dfcd-4838-a60d-8b7814d4ee51",
+    JobCodeKey: string; // null,
+    JobKey: string; // null,
+    Job: string; // null,
+    IsTransfer: boolean; // false,
+    PayType: {
+        Key: string; // "2f3376a9-c19e-49b5-be24-73d2261982c8",
+        PayTypeId: string; // "HOLIDAY",
+        PayTypeName: string; // "Holiday",
+        ConsideredAbsent: boolean; // false,
+        AllowForTimeOff: boolean; // false,
+        AllowAccrual: boolean; // false,
+        AllowOnCall: boolean; // false,
+        AllowRegularHours: boolean; // false,
+        AllowMiscHours: boolean; // true,
+        AllowMiscAmount: boolean; // false,
+        RequireReason: boolean; // false
+    },
+    "Exception": null,
+    "Reason": null,
+    "Department": {
+        "TimeZoneOffset": 0.0,
+        "NoPay": false,
+        "Id": "ABF",
+        "Key": "c05a8b60-7ae3-4315-949b-29b035c0c1c1",
+        "Description": "ABF Packing Inc",
+        "IsDefault": false,
+        "ParentKey": "b97e0557-0a4d-4b6d-a2f9-77df92ca8200",
+        "Type": 4,
+        "Children": {
+            PayrollCode: string;  // "",
+            TimeClockNbrInt: string;  // 0,
+            Id: string;  // "4e3c19c75c3d",
+            Key: string;  // "6d1915c9-dfcd-4838-a60d-8b7814d4ee51",
+            Description: string;  // "Default Position",
+            IsDefault: string;  // true,
+            ParentKey: string;  // "c05a8b60-7ae3-4315-949b-29b035c0c1c1",
+            Type: number;  // 5,
+            Children: {
+                Id: string; // "17b941d6-e187",
+                Key: string; // "17b941d6-e954-4acf-9120-078f827a5745",
+                Description: string; // "",
+                IsDefault: boolean; // false,
+                ParentKey: string; // "6d1915c9-dfcd-4838-a60d-8b7814d4ee51",
+                Type: number; // 6,
+                Children: any[]; // []
+            }[];
+        }[];
+    };
+    Position: {
+        PayrollCode: string; // "",
+        TimeClockNbrInt: number; // 0,
+        Id: string; // "4e3c19c75c3d",
+        Key: string; // "6d1915c9-dfcd-4838-a60d-8b7814d4ee51",
+        Description: string; // "Default Position",
+        IsDefault: boolean; // true,
+        ParentKey: string; // "c05a8b60-7ae3-4315-949b-29b035c0c1c1",
+        Type: number; // 5,
+        Children: {
+            Id: string; // "17b941d6-e187",
+            Key: string; // "17b941d6-e954-4acf-9120-078f827a5745",
+            Description: string; // "",
+            IsDefault: boolean; // false,
+            ParentKey: string; // "6d1915c9-dfcd-4838-a60d-8b7814d4ee51",
+            Type: number; // 6,
+            Children: any[]; // []
+        }[];
+    };
+    PeriodStartDate: string;   // "2021-05-31T00:00:00",
+    PeriodEndDate: string;   // "2021-06-06T00:00:00"
+}

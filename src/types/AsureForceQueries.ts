@@ -1,5 +1,7 @@
 import { Employee } from "./Employee";
 import { EmployeeLevel } from "./EmployeeLevel";
+import { Timecard } from "./Timecard";
+import { TimecardBulk } from "./TimecardBulk";
 
 type FancyProperties<T> = Pick<T, {
     [K in keyof T]: T[K] extends Record<string, any> ? K : never
@@ -14,8 +16,5 @@ export type AsureQueryParameters<T> = {
 
 export type AFEmployeeQueryString = AsureQueryParameters<Employee>;
 export type AFEmployeeLevelQueryString = AsureQueryParameters<EmployeeLevel>;
-
-// const config: AFEmployeeQueryString = {
-//   $select: ["EmployeeNumber", "EmployeeStatus"],
-//   $expand: ["Company"]
-// };
+export type AFTimeCardQueryString = AsureQueryParameters<Timecard>;
+export type AFTimeCardBulkQueryString = AsureQueryParameters<TimecardBulk>;
