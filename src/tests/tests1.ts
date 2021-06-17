@@ -24,21 +24,25 @@ config({ path: path.resolve(__dirname, '.env') });
     // });
     // console.log(employees[0]);
 
-    const levels = await connector.getLevel("34cd7c62-6e8b-413a-8b63-264eba01948d", {
-        $select: ['Company']
-    });
-    console.log(levels);
+    // const levels = await connector.getLevel("34cd7c62-6e8b-413a-8b63-264eba01948d", {
+    //     $select: ['Company']
+    // });
+    // console.log(levels);
 
     // const paygroup = await connector.getEmployeePaygroup("34cd7c62-6e8b-413a-8b63-264eba01948d");
     // console.log(paygroup);
 
-    // const startDate = new Date('2021-05-17T00:00:00');
+    const startDate = new Date('2021-05-17T00:00:00');
     // const endDate = new Date('2021-05-23T00:00:00');
     // const accrualBalance = await connector.getEmployeeAccrualBalance("e97a654e-a542-45f5-88b5-a97032bd7e1f", startDate, endDate);
     // console.log(accrualBalance);
 
     // const schedule = await connector.getEmployeeSchedule("e97a654e-a542-45f5-88b5-a97032bd7e1f", startDate, endDate);
     // console.log(schedule.DaySchedules[0]);
-    // const timecards = await connector.getTimecards(116, startDate);
-    // console.log(timecards);
+
+
+    const timecards = await connector.getTimecards(116, startDate, {
+        $select: ['CompanyID', 'DepartmentID'],
+    });
+    console.log(timecards);
 })();
