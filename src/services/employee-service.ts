@@ -4,7 +4,7 @@ import { EmployeeLevel } from "../types/EmployeeLevel";
 import { EmployeePaygroup } from "../types/EmployeePaygroup";
 import { EmployeeSchedule } from "../types/EmployeeSchedule";
 import { IConnectBase, GConstructor } from "../types/mixin";
-import { parseWithDate, parseWithDate2 } from "../utils/datetime";
+import { parseWithDate2 } from "../utils/datetime";
 
 export const EmployeeService = <TBase extends GConstructor<IConnectBase>>(Base: TBase) => {
     return class extends Base {
