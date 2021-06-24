@@ -1,6 +1,6 @@
 {
   "name": "asureforce",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Asure Force API for nodejs",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
