@@ -4,19 +4,20 @@ import { EmployeeLevel } from "../types/EmployeeLevel";
 import { EmployeePaygroup } from "../types/EmployeePaygroup";
 import { EmployeeSchedule } from "../types/EmployeeSchedule";
 import { IConnectBase, GConstructor } from "../types/mixin";
+import { parseWithDate, parseWithDate2 } from "../utils/datetime";
 
 export const EmployeeService = <TBase extends GConstructor<IConnectBase>>(Base: TBase) => {
     return class extends Base {
         async getEmployees(queries?: AFEmployeeQueryString) {
             const concatQueries = this.processQueryParameters(queries);
             const { data } = await this.http.get<Employee[]>(`/webapi/2/employees${concatQueries}`);
-            return data;
+            return data.map(item => parseWithDate2<Employee>(item));
         }
 
         async getEmployee(employeeKey: string, queries?: AFEmployeeQueryString) {
             const concatQueries = this.processQueryParameters(queries);
             const { data } = await this.http.get<Employee>(`/webapi/2/employees/${employeeKey}${concatQueries}`);
-            return data;
+            return parseWithDate2<Employee>(data);
         }
 
         async getEmployeePaygroup(employeeKey: string) {
